@@ -1,0 +1,6 @@
+id_mesa,provincia_id,circuito_escuela,total_electores,total_votos,votos_blanco,votos_nulos,votos_impugnados,candidatos
+BA-004-2025,1,Escuela Normal N° 1,500,450,20,10,5,"[{""candidato_id"":1,""votos"":200},{""candidato_id"":2,""votos"":215}]"
+BA-005-2025,1,Colegio Nacional,600,550,25,12,8,"[{""candidato_id"":1,""votos"":250},{""candidato_id"":2,""votos"":255}]"
+CABA-003-2025,2,Instituto Pellegrini,700,650,30,15,10,"[{""candidato_id"":3,""votos"":290},{""candidato_id"":4,""votos"":305}]"
+CB-002-2025,6,Escuela Manuel Belgrano,550,500,22,10,7,"[{""candidato_id"":5,""votos"":225},{""candidato_id"":6,""votos"":236}]"
+SF-002-2025,21,Colegio Inmaculada,480,430,18,8,5,"[{""candidato_id"":7,""votos"":195},{""candidato_id"":8,""votos"":204}]"

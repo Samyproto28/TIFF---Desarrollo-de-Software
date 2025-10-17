@@ -1,0 +1,202 @@
+[
+  {
+    "id_mesa": "BA-001-2025",
+    "provincia_id": 1,
+    "circuito_escuela": "Escuela Primaria N° 5 - Circuito 001",
+    "total_electores": 500,
+    "total_votos": 450,
+    "votos_blanco": 20,
+    "votos_nulos": 10,
+    "votos_impugnados": 5,
+    "candidatos": [
+      {
+        "candidato_id": 1,
+        "votos": 200
+      },
+      {
+        "candidato_id": 2,
+        "votos": 215
+      }
+    ]
+  },
+  {
+    "id_mesa": "BA-002-2025",
+    "provincia_id": 1,
+    "circuito_escuela": "Escuela Secundaria N° 10 - Circuito 001",
+    "total_electores": 600,
+    "total_votos": 550,
+    "votos_blanco": 15,
+    "votos_nulos": 8,
+    "votos_impugnados": 7,
+    "candidatos": [
+      {
+        "candidato_id": 1,
+        "votos": 250
+      },
+      {
+        "candidato_id": 2,
+        "votos": 270
+      }
+    ]
+  },
+  {
+    "id_mesa": "BA-003-2025",
+    "provincia_id": 1,
+    "circuito_escuela": "Escuela Técnica N° 3 - Circuito 002",
+    "total_electores": 700,
+    "total_votos": 650,
+    "votos_blanco": 25,
+    "votos_nulos": 12,
+    "votos_impugnados": 13,
+    "candidatos": [
+      {
+        "candidato_id": 1,
+        "votos": 300
+      },
+      {
+        "candidato_id": 2,
+        "votos": 300
+      }
+    ]
+  },
+  {
+    "id_mesa": "CABA-001-2025",
+    "provincia_id": 2,
+    "circuito_escuela": "Instituto Nacional del Centro - Circuito 001",
+    "total_electores": 800,
+    "total_votos": 720,
+    "votos_blanco": 30,
+    "votos_nulos": 15,
+    "votos_impugnados": 10,
+    "candidatos": [
+      {
+        "candidato_id": 3,
+        "votos": 320
+      },
+      {
+        "candidato_id": 4,
+        "votos": 345
+      }
+    ]
+  },
+  {
+    "id_mesa": "CABA-002-2025",
+    "provincia_id": 2,
+    "circuito_escuela": "Colegio Nacional Buenos Aires - Circuito 002",
+    "total_electores": 550,
+    "total_votos": 500,
+    "votos_blanco": 18,
+    "votos_nulos": 7,
+    "votos_impugnados": 5,
+    "candidatos": [
+      {
+        "candidato_id": 3,
+        "votos": 230
+      },
+      {
+        "candidato_id": 4,
+        "votos": 240
+      }
+    ]
+  },
+  {
+    "id_mesa": "CB-001-2025",
+    "provincia_id": 6,
+    "circuito_escuela": "Escuela Normal Superior - Circuito 001",
+    "total_electores": 650,
+    "total_votos": 600,
+    "votos_blanco": 22,
+    "votos_nulos": 10,
+    "votos_impugnados": 8,
+    "candidatos": [
+      {
+        "candidato_id": 5,
+        "votos": 280
+      },
+      {
+        "candidato_id": 6,
+        "votos": 280
+      }
+    ]
+  },
+  {
+    "id_mesa": "SF-001-2025",
+    "provincia_id": 21,
+    "circuito_escuela": "Instituto Provincial de Educación - Circuito 001",
+    "total_electores": 480,
+    "total_votos": 430,
+    "votos_blanco": 16,
+    "votos_nulos": 6,
+    "votos_impugnados": 4,
+    "candidatos": [
+      {
+        "candidato_id": 7,
+        "votos": 195
+      },
+      {
+        "candidato_id": 8,
+        "votos": 209
+      }
+    ]
+  },
+  {
+    "id_mesa": "MZ-001-2025",
+    "provincia_id": 13,
+    "circuito_escuela": "Colegio San Martín - Circuito 001",
+    "total_electores": 520,
+    "total_votos": 480,
+    "votos_blanco": 19,
+    "votos_nulos": 8,
+    "votos_impugnados": 6,
+    "candidatos": [
+      {
+        "candidato_id": 9,
+        "votos": 220
+      },
+      {
+        "candidato_id": 10,
+        "votos": 227
+      }
+    ]
+  },
+  {
+    "id_mesa": "TU-001-2025",
+    "provincia_id": 24,
+    "circuito_escuela": "Escuela Belgrano - Circuito 001",
+    "total_electores": 590,
+    "total_votos": 540,
+    "votos_blanco": 21,
+    "votos_nulos": 9,
+    "votos_impugnados": 7,
+    "candidatos": [
+      {
+        "candidato_id": 11,
+        "votos": 245
+      },
+      {
+        "candidato_id": 12,
+        "votos": 258
+      }
+    ]
+  },
+  {
+    "id_mesa": "SA-001-2025",
+    "provincia_id": 17,
+    "circuito_escuela": "Instituto San José - Circuito 001",
+    "total_electores": 460,
+    "total_votos": 420,
+    "votos_blanco": 17,
+    "votos_nulos": 7,
+    "votos_impugnados": 5,
+    "candidatos": [
+      {
+        "candidato_id": 13,
+        "votos": 188
+      },
+      {
+        "candidato_id": 14,
+        "votos": 203
+      }
+    ]
+  }
+]
