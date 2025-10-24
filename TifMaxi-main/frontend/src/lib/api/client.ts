@@ -4,12 +4,40 @@ class ApiClient {
   private baseURL: string;
   private token: string | null = null;
 
-  constructor(baseURL: string = 'http://localhost:8000/api/v1') {
+  constructor(baseURL: string = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1') {
     this.baseURL = baseURL;
-    // Load token from localStorage on initialization
+    // Load token from cookies on initialization
     if (typeof window !== 'undefined') {
-      this.token = localStorage.getItem('auth_token');
+      this.token = this.getTokenFromCookies();
     }
+  }
+
+  private getTokenFromCookies(): string | null {
+    if (typeof document === 'undefined') return null;
+
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'auth_token') {
+        return decodeURIComponent(value);
+      }
+    }
+    return null;
+  }
+
+  private setTokenCookie(token: string) {
+    if (typeof document === 'undefined') return;
+
+    // Set cookie with security flags
+    const isProduction = process.env.NODE_ENV === 'production';
+    const secure = isProduction ? 'secure;' : '';
+    document.cookie = `auth_token=${encodeURIComponent(token)}; path=/; ${secure} samesite=strict; max-age=86400`;
+  }
+
+  private removeTokenCookie() {
+    if (typeof document === 'undefined') return;
+
+    document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; samesite=strict';
   }
 
   private async request<T>(
@@ -18,11 +46,19 @@ class ApiClient {
   ): Promise<T> {
     const url = `${this.baseURL}${endpoint}`;
     
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      ...options.headers,
     };
+
+    // Merge existing headers
+    if (options.headers) {
+      Object.entries(options.headers).forEach(([key, value]) => {
+        if (typeof value === 'string') {
+          headers[key] = value;
+        }
+      });
+    }
 
     // Add authorization header if token exists
     if (this.token) {
@@ -65,16 +101,20 @@ class ApiClient {
   // Authentication methods
   setToken(token: string) {
     this.token = token;
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('auth_token', token);
-    }
+    this.setTokenCookie(token);
   }
 
   removeToken() {
     this.token = null;
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('auth_token');
-    }
+    this.removeTokenCookie();
+  }
+
+  getToken(): string | null {
+    return this.token;
+  }
+
+  hasToken(): boolean {
+    return !!this.token;
   }
 
   logout() {
@@ -86,16 +126,22 @@ class ApiClient {
 
   // HTTP methods
   async get<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
-    const url = new URL(`${this.baseURL}${endpoint}`);
+    let finalEndpoint = endpoint;
+
     if (params) {
+      const searchParams = new URLSearchParams();
       Object.entries(params).forEach(([key, value]) => {
         if (value !== undefined && value !== null) {
-          url.searchParams.append(key, String(value));
+          searchParams.append(key, String(value));
         }
       });
+      const paramString = searchParams.toString();
+      if (paramString) {
+        finalEndpoint += `?${paramString}`;
+      }
     }
-    
-    return this.request<T>(endpoint, {
+
+    return this.request<T>(finalEndpoint, {
       method: 'GET',
     });
   }
@@ -138,7 +184,7 @@ class ApiClient {
       });
     }
 
-    const headers: HeadersInit = {};
+    const headers: Record<string, string> = {};
     if (this.token) {
       headers['Authorization'] = `Bearer ${this.token}`;
     }
@@ -167,10 +213,10 @@ class ApiClient {
 
   // Download file method
   async download(endpoint: string, filename?: string): Promise<void> {
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Accept': 'application/json, text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     };
-    
+
     if (this.token) {
       headers['Authorization'] = `Bearer ${this.token}`;
     }

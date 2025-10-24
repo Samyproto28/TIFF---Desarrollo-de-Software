@@ -17,7 +17,7 @@ export default function ProvinciasPage() {
   const router = useRouter();
   const [provincias, setProvincias] = useState<Provincia[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | undefined>(undefined);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedProvincia, setSelectedProvincia] = useState<Provincia | null>(null);
@@ -38,7 +38,7 @@ export default function ProvinciasPage() {
   const loadProvincias = async () => {
     try {
       setLoading(true);
-      setError(null);
+      setError(undefined);
       
       const params = {
         ...filters,
@@ -118,15 +118,21 @@ export default function ProvinciasPage() {
     }
   };
 
-  const columns = [
+  const columns: Array<{
+    key: keyof Provincia;
+    label: string;
+    sortable?: boolean;
+    width?: string;
+    render?: (value: any) => React.ReactNode;
+  }> = [
     {
-      key: 'id',
+      key: 'id' as keyof Provincia,
       label: 'ID',
       sortable: true,
       width: '80px',
     },
     {
-      key: 'nombre',
+      key: 'nombre' as keyof Provincia,
       label: 'Nombre',
       sortable: true,
       render: (value: string) => (
@@ -139,7 +145,7 @@ export default function ProvinciasPage() {
       ),
     },
     {
-      key: 'codigo',
+      key: 'codigo' as keyof Provincia,
       label: 'Código',
       sortable: true,
       width: '100px',
@@ -150,14 +156,14 @@ export default function ProvinciasPage() {
       ),
     },
     {
-      key: 'activo',
+      key: 'activo' as keyof Provincia,
       label: 'Estado',
       sortable: true,
       width: '120px',
       render: (value: boolean) => (
         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-          value 
-            ? 'bg-green-100 text-green-800' 
+          value
+            ? 'bg-green-100 text-green-800'
             : 'bg-red-100 text-red-800'
         }`}>
           {value ? 'Activa' : 'Inactiva'}
@@ -165,7 +171,7 @@ export default function ProvinciasPage() {
       ),
     },
     {
-      key: 'created_at',
+      key: 'created_at' as keyof Provincia,
       label: 'Creado',
       sortable: true,
       width: '180px',

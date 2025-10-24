@@ -28,7 +28,8 @@ export function useAuth(requireAuth = true) {
     };
 
     checkAuth();
-  }, [requireAuth, isAuthenticated, isLoading, router, setLoading, logout]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requireAuth, isAuthenticated, isLoading]);
 
   const handleLogout = async () => {
     try {

@@ -32,7 +32,7 @@ export function CandidatoForm({ candidato, onSuccess, onCancel }: CandidatoFormP
     defaultValues: {
       nombre_completo: candidato?.nombre_completo || '',
       cargo: candidato?.cargo || 'Diputado',
-      provincia_id: candidato?.provincia_id || '',
+      provincia_id: candidato?.provincia_id || 0,
       lista_alianza: candidato?.lista_alianza || '',
       observaciones: candidato?.observaciones || '',
       activo: candidato?.activo ?? true,
@@ -156,14 +156,20 @@ export function CandidatoForm({ candidato, onSuccess, onCancel }: CandidatoFormP
         />
       </div>
 
-      <Input
-        label="Observaciones"
-        {...register('observaciones')}
-        error={errors.observaciones?.message}
-        placeholder="Información adicional sobre el candidato"
-        multiline
-        rows={3}
-      />
+      <div className="w-full">
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Observaciones
+        </label>
+        <textarea
+          {...register('observaciones')}
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          placeholder="Información adicional sobre el candidato"
+          rows={3}
+        />
+        {errors.observaciones && (
+          <p className="mt-1 text-sm text-red-600">{errors.observaciones.message}</p>
+        )}
+      </div>
 
       <div className="flex items-center">
         <input

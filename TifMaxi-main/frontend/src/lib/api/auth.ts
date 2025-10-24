@@ -36,6 +36,6 @@ export const authService = {
   },
 
   isAuthenticated(): boolean {
-    return !!apiClient['token'];
+    return apiClient.hasToken();
   },
 };
